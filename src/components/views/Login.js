@@ -1,6 +1,3 @@
-import axios from 'axios';
-import { useState } from 'react';
-
 function Login() {
   
   return (
@@ -21,7 +18,7 @@ function Login() {
           <div class="text-center">
             <button type="submit" class="btn btn-primary text-center">Войти</button>
             <p class="mt-3">
-            Нет аккаунта? <a href="#">Регистрация</a>
+            Нет аккаунта? <a href="/registration">Регистрация</a>
           </p>
           </div>
         </form>
