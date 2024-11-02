@@ -1,23 +1,39 @@
+import React, {useState} from "react";
+import { registerUser } from "../services/UserService";
+
 function Register() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+        try{
+            await registerUser({ username, password });
+            alert('Note updated successfully');
+        }
+        catch (error){
+            alert('An error occurred: ' + error.message);
+        }
+    }
   
     return (
-  <div class="d-flex justify-content-center align-items-center">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-3">
-          <h1 class="mb-4 text-center">Регистрация</h1>
-          <form method="post" action="/login">
-            <div class="mb-3">
-              <label for="login" class="form-label">Логин</label>
-              <input type="text" class="form-control" id="username" name="username" placeholder="Введите логин"/>
+  <div className="d-flex justify-content-center align-items-center">
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-md-3">
+          <h1 className="mb-4 text-center">Регистрация</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="login" className="form-label">Логин</label>
+              <input type="text" className="form-control" value={username} name="username" onChange={(e) => setUsername(e.target.value)} placeholder="Введите логин"/>
             </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Пароль:</label>
-              <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль"/>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">Пароль:</label>
+              <input type="password" className="form-control" value={password} name="password" onChange={(e) => setPassword(e.target.value)} placeholder="Введите пароль"/>
             </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary text-center">Зарегистрироваться</button>
-              <p class="mt-3">
+            <div className="text-center">
+              <button type="submit" className="btn btn-primary text-center">Зарегистрироваться</button>
+              <p className="mt-3">
               Уже есть аккаунт? <a href="/login">Войти</a>
             </p>
             </div>
