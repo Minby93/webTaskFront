@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { getNotes } from "../services/NoteService"
 import './Notes.css';
 function Home(){
+  const notes = [{id: 2, data: "asdqwew2131dsadasdasdasdasdasdsadsadfkdsjlkfjdsklgjdsjgklsdjkldsjakfljdsk23"},
+                {id: 2312, data: "AAAAA"},
+                {id: 23321321, data: "qwewq"},
+                {id: 23213, data: "HEllo friend"}];
     // const [notes, setNotes] = useState([]);
    
     // useEffect(() => {
@@ -17,35 +21,30 @@ function Home(){
     // fetchNotes();
     // }, [])
 
-    //return (
-        // <div>
-        //     <h1>Список заметок</h1>
-        //     {notes.map((note) => (
-        //         <div key={note.id}>
-        //             <p>{note.data}</p>
-        //         </div>
-        //     ))}
-        // </div>
-    //)
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [currentNote, setCurrentNote] = useState("Тут должен быть текст заметки, который можно редактировать в этом же поле");
+    const [currentNote, setCurrentNote] = useState(null);
   
     // Функция для открытия модального окна
-    const openModal = () => {
+    const openModal = (note) => {
+      setCurrentNote(note);
       setIsModalOpen(true);
     };
   
     // Функция для закрытия модального окна
     const closeModal = () => {
       setIsModalOpen(false);
+      setCurrentNote(null);
     };
   
     return (
       <div className="notes-container">
         {/* Карточка заметки */}
-        <div className="note" onClick={openModal}>
-          Тут должна быть часть текста заметки...
-        </div>
+        {notes.map((note) => (
+          <div key={note.id} className="note" onClick={() => openModal(note)}>
+            <p>{note.data.length > 20 ? note.data.slice(0,20).trim() + "..." : note.data}</p>
+          </div>
+        ))}
+        
   
         {/* Модальное окно */}
         {isModalOpen && (
@@ -56,8 +55,8 @@ function Home(){
               </button>
               <textarea
                 style={{ width: '100%', height: '150px' }}
-                value={currentNote}
-                onChange={(e) => setCurrentNote(e.target.value)}
+                value={currentNote.data}
+                onChange={(e) => setCurrentNote({...currentNote, data: e.target.value})}
               />
               <div className="modal-buttons">
                 <button className="save-btn" onClick={() => alert("Сохранено!")}>
