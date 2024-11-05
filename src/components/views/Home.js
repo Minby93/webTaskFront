@@ -35,6 +35,15 @@ function Home(){
       setIsModalOpen(false);
       setCurrentNote(null);
     };
+
+    // Функция для подтверждения удаления заметки
+  const confirmDelete = () => {
+    if (window.confirm("Вы уверены, что хотите удалить эту заметку?")) {
+      // Логика удаления заметки
+      alert("Заметка удалена!");
+      closeModal();
+    }
+  };
   
     return (
       <div className="notes-container">
@@ -62,7 +71,7 @@ function Home(){
                 <button className="save-btn" onClick={() => alert("Сохранено!")}>
                   Сохранить
                 </button>
-                <button className="delete-btn" onClick={() => alert("Удалено!")}>
+                <button className="delete-btn" onClick={confirmDelete}>
                   Удалить
                 </button>
               </div>
