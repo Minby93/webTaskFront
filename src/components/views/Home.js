@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getNotes } from "../services/NoteService"
-import './Notes.css';
+import './styles/Notes.css';
 function Home(){
   const notes = [{id: 2, data: "asdqwew2131dsadasdasdasdasdasdsadsadfkdsjlkfjdsklgjdsjgklsdjkldsjakfljdsk23"},
                 {id: 2312, data: "AAAAA"},
@@ -22,6 +22,7 @@ function Home(){
     // }, [])
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [currentNote, setCurrentNote] = useState(null);
   
     // Функция для открытия модального окна
@@ -37,12 +38,22 @@ function Home(){
     };
 
     // Функция для подтверждения удаления заметки
+  // Открыть модальное окно для подтверждения удаления
+  const openDeleteModal = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  // Закрыть модальное окно для подтверждения удаления
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+  };
+
+  // Подтвердить удаление заметки
   const confirmDelete = () => {
-    if (window.confirm("Вы уверены, что хотите удалить эту заметку?")) {
-      // Логика удаления заметки
-      alert("Заметка удалена!");
-      closeModal();
-    }
+    // Логика удаления заметки
+    alert("Заметка удалена!");
+    closeDeleteModal();
+    closeModal();
   };
   
     return (
@@ -71,13 +82,30 @@ function Home(){
                 <button className="save-btn" onClick={() => alert("Сохранено!")}>
                   Сохранить
                 </button>
-                <button className="delete-btn" onClick={confirmDelete}>
+                <button className="delete-btn" onClick={openDeleteModal}>
                   Удалить
                 </button>
               </div>
             </div>
           </div>
         )}
+
+        {/* Модальное окно для подтверждения удаления */}
+      {isDeleteModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <p>Вы уверены, что хотите удалить эту заметку?</p>
+            <div className="modal-buttons">
+              <button className="delete-btn" onClick={confirmDelete}>
+                Да, удалить
+              </button>
+              <button className="save-btn" onClick={closeDeleteModal}>
+                Отмена
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
     );
   }
