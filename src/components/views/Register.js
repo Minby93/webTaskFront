@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { registerUser } from "../services/UserService";
+import { Navigate } from "react-router-dom";
 
 function Register() {
     const [username, setUsername] = useState('');
@@ -9,7 +10,7 @@ function Register() {
         e.preventDefault();
         try{
             await registerUser({ username, password });
-            alert('Note updated successfully');
+            window.location.pathname = '/login';
         }
         catch (error){
             alert('An error occurred: ' + error.message);

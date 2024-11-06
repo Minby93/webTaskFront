@@ -5,7 +5,6 @@ body {
   color: #333; /* Темный текст для лучшей читаемости */
   margin: 0;
   padding: 20px;
-  display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
@@ -112,4 +111,65 @@ body {
 .delete-btn:hover {
   background-color: #cc0000;
   color: #fff;
+}
+
+.no-notes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 20px;
+}
+
+.no-notes p {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.create-note-btn {
+  position: fixed; /* Фиксированное позиционирование */
+  top: 20px; /* Отступ от верхнего края */
+  left: 20px; /* Отступ от правого края */
+  background-color: green; /* Зеленый фон */
+  color: white; /* Белый текст */
+  border: none; /* Без границы */
+  padding: 10px 20px; /* Отступы внутри кнопки */
+  font-size: 16px; /* Размер шрифта */
+  cursor: pointer; /* Курсор при наведении */
+  border-radius: 5px; /* Скругленные углы */
+  transition: background-color 0.3s; /* Плавный переход фона */
+}
+
+.create-note-btn:hover {
+  background-color: #006400; /* Тёмно-зеленый при наведении */
+}
+
+.logout-btn {
+  position: fixed; /* Фиксированное позиционирование */
+  top: 20px; /* Отступ от верхнего края */
+  right: 20px; /* Отступ от правого края */
+  background-color: #FF4D4D; /* Красный цвет фона */
+  color: white; /* Белый текст */
+  border: none; /* Без рамки */
+  border-radius: 5px; /* Скругленные углы */
+  padding: 10px 20px; /* Отступы вокруг текста */
+  font-size: 16px; /* Размер шрифта */
+  cursor: pointer; /* Указатель руки при наведении */
+  transition: background-color 0.3s, transform 0.2s; /* Плавное изменение фона и эффекта при наведении */
+}
+
+.logout-btn:hover {
+  background-color: #FF1A1A; /* Тёмно-красный при наведении */
+  transform: scale(1.05); /* Увеличение кнопки при наведении */
+}
+
+.logout-btn:active {
+  background-color: #E60000; /* Еще более темный цвет при клике */
+  transform: scale(0.98); /* Сжатие кнопки при нажатии */
 }
