@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8080/note'; // Update with your API URL
+const API_URL = process.env.REACT_APP_BACK_URL + '/note'; // Update with your API URL
 
 const addNote = (note) => {
   return axios.post(`${API_URL}/add`, note, {

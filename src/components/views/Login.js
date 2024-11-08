@@ -11,6 +11,8 @@ function Login() {
     }
   }, []);
 
+  const LOGIN_API_URL = process.env.REACT_APP_LOGIN_BACK_URL;
+
   return (
     <div className="d-flex justify-content-center align-items-center mt-5">
       <div className="container">
@@ -18,7 +20,7 @@ function Login() {
           <div className="col-md-3">
             <h1 className="mb-4 text-center">Авторизация</h1>
             {/* Форма для входа */}
-            <form method="post" action="http://127.0.0.1:8080/login">
+            <form method="post" action={LOGIN_API_URL}>
               <div className="mb-3">
                 <label htmlFor="login" className="form-label">Логин</label>
                 <input
